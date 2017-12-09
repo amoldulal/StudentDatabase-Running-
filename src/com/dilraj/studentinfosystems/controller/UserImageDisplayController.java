@@ -11,22 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dilraj.studentinfosystems.service.StudentService;
-import com.dilraj.studentinfosystems.service.studentServiceImpl;
+import com.dilraj.studentinfosystems.service.UserService;
+import com.dilraj.studentinfosystems.service.UserServiceImpl;
 
 /**
- * Servlet implementation class ImageDisplayController
+ * Servlet implementation class UserImageDisplayController
  */
-@WebServlet("/ImageDisplayController")
-public class ImageDisplayController extends HttpServlet {
+@WebServlet("/UserImageDisplayController")
+public class UserImageDisplayController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final int DEFAULT_BUFFER_SIZE = 1024;
-	StudentService studentService = new studentServiceImpl();
+	UserService userService = new UserServiceImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String studenId = request.getParameter("studentId");
-		String filePath = studentService.getImageUrl(Integer.parseInt(studenId));
+		String studenId = request.getParameter("userId");
+		String filePath = userService.getImageUrl(Integer.parseInt(studenId));
 
 		File file = new File(filePath);
 		String contentType = getServletContext().getMimeType(file.getName());
@@ -60,4 +60,5 @@ public class ImageDisplayController extends HttpServlet {
 		}
 
 	}
+
 }

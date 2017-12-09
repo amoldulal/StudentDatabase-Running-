@@ -41,7 +41,7 @@
 						<td><c:out value="${student.subject}" /></td>
 						<td><c:out value="${student.departments}" /></td>
 						<td><c:out value="${student.dob}" /></td>
-						<td><img src="ImageDisplayController?studentId=${student.id}"
+						<td><img src="StudentImageDisplayController?studentId=${student.id}"
 							alt="profile pic" width="50px" height="50px"></td>
 						<td><a
 							href="StudentController?actions=student_delete&studentId=${student.id}">Delete</a>|

@@ -13,7 +13,8 @@
 	<div class="container">
 		<fieldset>
 			<legend align="top">User Registration Form</legend>
-			<form class="container" action="UserController" method="post">
+			<form class="container" action="UserController" method="post" enctype="multipart/form-data">
+			<span><input type="hidden" name="id" value="${user.id}"></span>
 				<div class="form-group">
 					<label for="exampleInputEmail1">FirstName</label> <input
 						type="text" class="form-control" id="exampleInputEmail1"
@@ -68,6 +69,10 @@
 						<input type="date" class="form-control"
 							id="exampleFormControlInput1" value="${user.dob}" name="dob">
 					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label" for="exampleFormControlFile1">Upload Image</label> <input
+						type="file" class="form-control-file" id="exampleFormControlFile1" name="photo">
 				</div>
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>

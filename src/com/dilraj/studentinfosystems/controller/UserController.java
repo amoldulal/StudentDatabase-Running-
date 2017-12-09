@@ -7,19 +7,23 @@ import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.dilraj.studentinfosystems.dto.User;
 import com.dilraj.studentinfosystems.service.UserService;
 import com.dilraj.studentinfosystems.service.UserServiceImpl;
+import com.dilraj.studentinfosystems.util.ImageUtil;
 
 /**
  * Servlet implementation class UserController
  */
 @WebServlet("/UserController")
+@MultipartConfig
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String USER_LIST_PAGE = "userDetails.jsp";
@@ -65,9 +69,19 @@ public class UserController extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		user.setImageUrl("");
+		
 
 		String userId = request.getParameter("id");
+		Part part = request.getPart("photo");
+		String fileName = ImageUtil.getFileName(part);
+		String imageUrl = "";
+		if (!fileName.isEmpty()) {
+			imageUrl = ImageUtil.writeImageToFile(imageUrl + fileName, part);
+		} else {
+			imageUrl = userService.getImageUrl(Integer.parseInt(userId));
+		}
+		user.setImageUrl(imageUrl);
+		
 		if (userId == null || userId.isEmpty()) {
 			userService.saveUserInfo(user);
 		} else {

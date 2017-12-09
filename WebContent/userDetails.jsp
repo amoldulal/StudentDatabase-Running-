@@ -23,6 +23,7 @@
 					<th scope="col">Password</th>
 					<th scope="col">Gender</th>
 					<th scope="col">DOB</th>
+					<th scope="col">photo</th>
 					<th scope="col">Actions</th>
 
 				</tr>
@@ -39,6 +40,8 @@
 						<td><c:out value="${user.password}" /></td>
 						<td><c:out value="${user.gender}" /></td>
 						<td><c:out value="${user.dob}" /></td>
+						<td><img src="UserImageDisplayController?userId=${user.id}"
+							alt="profile pic" width="50px" height="50px"></td>
 						<td><a href="UserController?actions=user_delete&userId=${user.id}">Delete</a>|
 						<a href="UserController?actions=user_edit&userId=${user.id}">Edit</a>
 					</tr>

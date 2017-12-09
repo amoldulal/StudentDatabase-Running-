@@ -131,7 +131,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public String getImageUrl(int id) {
-		return null;
+		String sql= "select image_url from users where user_id=?";
+		String imageUrl="";
+		try {
+			ps = Dbutil.getConnection().prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				imageUrl = rs.getString("image_url");
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return imageUrl;
 	}
 
 	@Override
